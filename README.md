@@ -67,16 +67,16 @@ A full-featured WhatsApp clone built with Next.js 14, Firebase, and WebRTC. This
    ```
 
 3. **Environment Configuration**
-   The `.env.local` file is already configured with your Firebase credentials:
+   The `.env.local` file there fill with you crediantials:
    ```
-   NEXT_PUBLIC_FIREBASE_API_KEY=AIzaSyBBgBWe8Mapr2lE0EhRMtPWGTWkZDYMCOU
-   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=wallpaperverse-87927.firebaseapp.com
-   NEXT_PUBLIC_FIREBASE_DATABASE_URL=https://wallpaperverse-87927-default-rtdb.firebaseio.com
-   NEXT_PUBLIC_FIREBASE_PROJECT_ID=wallpaperverse-87927
-   NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=wallpaperverse-87927.appspot.com
-   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=833948658302
-   NEXT_PUBLIC_FIREBASE_APP_ID=1:833948658302:web:70b06b45f23f5489e7862f
-   NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=G-TKR66VB2C3
+   NEXT_PUBLIC_FIREBASE_API_KEY=AI*****************************8
+   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=**************.firebaseapp.com
+   NEXT_PUBLIC_FIREBASE_DATABASE_URL=https://***********.firebaseio.com
+   NEXT_PUBLIC_FIREBASE_PROJECT_ID=w**888*********
+   NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=***********8.appspot.com
+   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=8********88
+   NEXT_PUBLIC_FIREBASE_APP_ID=1:833**************88888
+   NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=G-T*********8
    ```
 
 4. **Firebase Security Rules**
@@ -188,5 +188,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - All open-source contributors
 
 ---
+
 
 **Note**: This is a fully functional, production-ready WhatsApp clone. All features are implemented and ready for real-world usage with proper security measures in place.
