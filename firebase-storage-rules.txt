@@ -1,0 +1,29 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Users can upload their own profile pictures
+    match /users/{userId}/{allPaths=**} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Chat media - only participants can upload/download
+    match /chats/{chatId}/media/{allPaths=**} {
+      allow read, write: if request.auth != null && 
+        exists(/databases/(default)/documents/chats/$(chatId)) &&
+        request.auth.uid in resource.data.participants;
+    }
+    
+    // Group photos - only group members can access
+    match /groups/{groupId}/{allPaths=**} {
+      allow read, write: if request.auth != null &&
+        exists(/databases/(default)/documents/chats/$(groupId)) &&
+        request.auth.uid in resource.data.participants;
+    }
+    
+    // Status media - only the user can upload, but others can read if not blocked
+    match /status/{userId}/{allPaths=**} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+  }
+}

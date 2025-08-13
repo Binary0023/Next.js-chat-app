@@ -1,0 +1,61 @@
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        ".read": "auth != null",
+        ".write": "auth != null && auth.uid == $uid",
+        ".validate": "newData.hasChildren(['email', 'displayName', 'isOnline', 'lastSeen', 'settings'])"
+      }
+    },
+    "chats": {
+      "$chatId": {
+        ".read": "auth != null && (data.child('participants').val().contains(auth.uid))",
+        ".write": "auth != null && (data.child('participants').val().contains(auth.uid) || newData.child('participants').val().contains(auth.uid))",
+        "participants": {
+          ".validate": "newData.isString() || (newData.hasChildren() && newData.val().contains(auth.uid))"
+        },
+        "lastMessage": {
+          ".validate": "newData.hasChildren(['senderId', 'content', 'timestamp', 'type'])"
+        }
+      }
+    },
+    "messages": {
+      "$chatId": {
+        ".read": "auth != null && root.child('chats').child($chatId).child('participants').val().contains(auth.uid)",
+        "$messageId": {
+          ".write": "auth != null && (newData.child('senderId').val() == auth.uid || data.child('senderId').val() == auth.uid)",
+          ".validate": "newData.hasChildren(['senderId', 'content', 'timestamp', 'type'])"
+        }
+      }
+    },
+    "calls": {
+      "$callId": {
+        ".read": "auth != null && (data.child('callerId').val() == auth.uid || data.child('receiverId').val() == auth.uid)",
+        ".write": "auth != null && (data.child('callerId').val() == auth.uid || data.child('receiverId').val() == auth.uid || newData.child('callerId').val() == auth.uid)",
+        ".validate": "newData.hasChildren(['callerId', 'receiverId', 'type', 'status', 'startTime'])"
+      }
+    },
+    "friendRequests": {
+      "$requestId": {
+        ".read": "auth != null && (data.child('senderId').val() == auth.uid || data.child('receiverId').val() == auth.uid)",
+        ".write": "auth != null && (data.child('senderId').val() == auth.uid || data.child('receiverId').val() == auth.uid || newData.child('senderId').val() == auth.uid)",
+        ".validate": "newData.hasChildren(['senderId', 'receiverId', 'status', 'timestamp'])"
+      }
+    },
+    "status": {
+      "$userId": {
+        ".read": "auth != null",
+        "$statusId": {
+          ".write": "auth != null && auth.uid == $userId",
+          ".validate": "newData.hasChildren(['content', 'type', 'timestamp', 'expiresAt'])"
+        }
+      }
+    },
+    "blockedUsers": {
+      "$userId": {
+        ".read": "auth != null && auth.uid == $userId",
+        ".write": "auth != null && auth.uid == $userId"
+      }
+    }
+  }
+}

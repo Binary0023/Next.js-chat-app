@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: system-ui, sans-serif;
+  }
+  
+  body {
+    @apply bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+  }
+  
+  /* Theme variations */
+  .blue {
+    --whatsapp-50: #eff6ff;
+    --whatsapp-500: #3b82f6;
+    --whatsapp-600: #2563eb;
+  }
+  
+  .green {
+    --whatsapp-50: #f0fdf4;
+    --whatsapp-500: #10b981;
+    --whatsapp-600: #059669;
+  }
+  
+  .purple {
+    --whatsapp-50: #faf5ff;
+    --whatsapp-500: #8b5cf6;
+    --whatsapp-600: #7c3aed;
+  }
+  
+  .pink {
+    --whatsapp-50: #fdf2f8;
+    --whatsapp-500: #ec4899;
+    --whatsapp-600: #db2777;
+  }
+  
+  .orange {
+    --whatsapp-50: #fff7ed;
+    --whatsapp-500: #f97316;
+    --whatsapp-600: #ea580c;
+  }
+}
+
+@layer components {
+  .chat-bubble {
+    @apply max-w-xs lg:max-w-md px-4 py-2 rounded-lg break-words;
+  }
+  
+  .chat-bubble-sent {
+    @apply bg-whatsapp-500 text-white ml-auto;
+  }
+  
+  .chat-bubble-received {
+    @apply bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Custom animations */
+@keyframes typing {
+  0%, 60%, 100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-10px);
+  }
+}
+
+.typing-indicator span {
+  animation: typing 1.4s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
